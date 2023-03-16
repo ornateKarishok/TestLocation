@@ -18,9 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,10 +30,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private String currentLongitude = null;
     private Location currentAddress = null;
 
-    //    private Address meetingLocation;
-//    private ArrayList<String> addresses;
-//    private ArrayList<Address> addressesLatLang;
-    private List<MeetingAddress> addresses = new LinkedList<>();
+    private final List<MeetingAddress> addresses = new LinkedList<>();
     TextView txtLat;
 
     @Override
@@ -100,12 +95,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public void onLocationChanged(Location location) {
         if (currentLongitude == null || currentLatitude == null) {
             txtLat = findViewById(R.id.textview1);
-//            currentAddress.setLatitude(location.getLatitude());
-//            currentAddress.setLongitude(location.getLongitude());
             currentAddress = location;
             currentLatitude = Double.toString(location.getLatitude());
             currentLongitude = Double.toString(location.getLongitude());
-            txtLat.setText("Latitude:" + currentLatitude + ", Longitude:" + currentLongitude);
+            String temp = "Latitude:" + currentLatitude + ", Longitude:" + currentLongitude;
+            txtLat.setText(temp);
             onCurrentLocationGated();
         }
     }
